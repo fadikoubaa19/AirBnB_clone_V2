@@ -54,7 +54,7 @@ class FileStorage:
                 for key, val in temp.items():
                     self.all()[key] = classes[val['__class__']](**val)
         except FileNotFoundError:
-            pas
+            pass
 
     def delete(self, obj=None):
         """ Task 5 """
