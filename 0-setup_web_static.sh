@@ -13,6 +13,6 @@ sudo echo "<html>
 sudo rm -f -R /data/web_static/current
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data/
-TEST_STRING="\\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n"
-sudo sed -i "53i $TEST_STRING" /etc/nginx/sites-available/default
+msg="location /hbnb_static/ {\nalias /data/web_static/current;\n}"
+sudo sed -i "40i $msg" /etc/nginx/sites-enabled/default
 sudo service nginx restart
