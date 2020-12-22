@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-""" Task 1 """
-from datetime import datetime
+""" add date and time"""
 from fabric.api import local
+from datetime import datetime
 
 
 def do_pack():
