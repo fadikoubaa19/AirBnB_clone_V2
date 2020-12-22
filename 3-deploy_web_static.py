@@ -26,8 +26,8 @@ def do_deploy(archive_path=None):
     try:
         put(archive_path, "/tmp/")
         run('mkdir -p /data/web_static/releases/{}/'.format(name))
-        run('tar -xzf /tmp/{}.tgz -C /data/web_static/\
-            releases/{}/'.format(name, name))
+        run('tar -xzf /tmp/{}.tgz -C /data/web_static/releases/{}/'
+            .format(name, name))
         run('rm /tmp/{}.tgz'.format(name))
         run('mv /data/web_static/releases/{}/web_static/* \
             /data/web_static/releases/{}'.format(name, name))
