@@ -1,31 +1,29 @@
 #!/usr/bin/python3
-""" Task 2 """
+""" web server """
 from datetime import datetime
-from fabric.api import put, run, env
+from fabric.operations import run, put, sudo
 from os.path import exists
 
 
-env.hosts = ['35.231.99.203', '35.196.75.2']
+env.hosts = ['35.196.67.203', '34.75.15.109']
+env.user = 'ubuntu'
 
-
-def do_deploy(archive_path=None):
-    """ Task 2 """
-    if exists(archive_path) is False:
+def do_deploy(archive_path):
+    ''' from archives to servers'''
+    if (os.path.exists(archive_path) is False):
         return False
-
-    name = archive_path.split("/")[-1].split(".")[0]
+    f = archive_path.split('/')[-1]
+    i = '/data/web_static/release/' + \
+          "{}".format(f.split('.')[0])
+    c = 'data/web_static/current'
     try:
-        put(archive_path, "/tmp/")
-        run('mkdir -p /data/web_static/releases/{}/'.format(name))
-        run('tar -xzf /tmp/{}.tgz -C /data/web_static/releases/{}/'
-            .format(name, name))
-        run('rm /tmp/{}.tgz'.format(name))
-        run('mv /data/web_static/releases/{}/web_static/* \
-            /data/web_static/releases/{}'.format(name, name))
-        run('rm -rf /data/web_static/releases/{}/web_static'.format(name))
-        run('rm -rf /data/web_static/current')
-        run('ln -s /data/web_static/releases/{}/ \
-            /data/web_static/current'.format(name))
+        put(archive_path, '/tmp/')
+        run('sudo mkdir -p {}/'.format(i))
+        run('sudo tar -xzf {} -C {}/'.format(tmp, i))
+        run('sudo rm /tmp/{}'.format(f))
+        run('sudo mv {}/web_static {}/'.format(i))
+        run('sudo rm -rf {}'.format(c))
+        run('sudo ln -s {}/ {}'.format(i, c))
         return True
     except:
         return False
