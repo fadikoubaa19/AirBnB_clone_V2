@@ -1,11 +1,20 @@
 #!/usr/bin/python3
-""" Task 2 """
+""" Task 1 """
 from datetime import datetime
+from fabric.api import local
 from fabric.api import put, run, env
 from os.path import exists
 
-
 env.hosts = ['35.231.99.203', '35.196.75.2']
+
+
+def do_pack():
+    """ Task 1 """
+    date = datetime.utcnow().strftime("%Y%m%d%H%M%S")
+    filepath = "versions/web_static_{}.tgz".format(date)
+    local("mkdir -p versions")
+    local("tar -cvzf {} web_static".format(filepath))
+    return filepath
 
 
 def do_deploy(archive_path=None):
@@ -29,3 +38,11 @@ def do_deploy(archive_path=None):
         return True
     except:
         return False
+
+
+def deploy():
+    """ Task 3 """
+    archive_path = do_pack()
+    if archive_path is None:
+        return False
+    return do_deploy(archive_path)
