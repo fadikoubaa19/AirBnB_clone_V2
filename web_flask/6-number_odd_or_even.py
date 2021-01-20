@@ -37,10 +37,8 @@ def intHtml(n):
 
 @app.route("/number_odd_or_even/<int:n>", strict_slashes=False)
 def EO(n):
-    if n % 2 == 0:
-        S1 = 'even'
-    else 'odd'
-    return render_template('6-number_odd_or_even.py', n=n, S1=S1)
+    EO = 'even' if n % 2 == 0 else 'odd'
+    return render_template('6-number_odd_or_even.py', n=n, EO=EO)
 
 
 if __name__ == "__main__":
