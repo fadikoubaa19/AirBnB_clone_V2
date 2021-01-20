@@ -35,10 +35,10 @@ def intHtml(n):
     return render_template('5-number.html', n=n)
 
 
-@app.route("/number_odd_or_even/<int:n>", strict_slashes=False)
-def number_odd_or_even(n):
-    EO = 'even' if n % 2 == 0 else 'odd'
-    return render_template('6-number_odd_or_even.py', n=n, EO=EO)
+@app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
+def slash_number_odd_or_even(n):
+    e_o = 'even' if n % 2 == 0 else 'odd'
+    return render_template('6-number_odd_or_even.html', n=n, e_o=e_o)
 
 
 if __name__ == "__main__":
