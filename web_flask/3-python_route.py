@@ -20,8 +20,8 @@ def route(text):
 
 
 @app.route("/python", strict_slashes=False)
-@app.route("/python/(<text>)", strict_slashes=False)
-def Python(text="is cool"):
+@app.route("/python/<text>", strict_slashes=False)
+def Pyfun(text="is cool"):
     return "Python {}".format(text.replace('_', ' '))
 
 
