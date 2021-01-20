@@ -21,9 +21,15 @@ class State(BaseModel, Base):
     else:
         name = ""
 
+    if storage_type != 'db':
     @property
     def cities(self):
         '''
           update return
         '''
-        return [city for city in State.cities if city.state_id == self.id]
+        lc = []
+        all_cities = models.storage.all(City)
+        for city_obj in all_cities.items():
+            if city_obj.state_id == self.id:
+                lc.append(city_obj)
+        return lc

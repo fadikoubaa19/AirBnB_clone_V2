@@ -77,4 +77,4 @@ class DBStorage:
         '''
             task 7
         '''
-        self.__session.remove()
+        self.__session.close()
