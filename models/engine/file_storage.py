@@ -63,3 +63,8 @@ class FileStorage:
             if tag in FileStorage.__objects:
                 del FileStorage.__objects[tag]
                 self.save()
+    def close(self):
+        '''
+            task 7
+        '''
+        self.reload()

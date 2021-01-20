@@ -23,9 +23,7 @@ class State(BaseModel, Base):
 
     @property
     def cities(self):
-        """ Task 6 """
-        ls = []
-        for x in models.storage.all(City).values():
-            if x.state_id == self.id:
-                ls.append(x)
-        return ls
+        '''
+          update return
+        '''
+        return [city for city in State.cities if city.state_id == self.id]
